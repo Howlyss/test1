@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Czas</title>
+    <style>
+        body {
+            background-color: aqua;
+        }
+
+        #container {
+            background-color: chartreuse;
+            color: magenta;
+            width: 550px;
+            margin: auto;
+            text-align: center;
+            padding: 15px;
+            height: 60vh;
+            border: 2px solid red;
+            border-radius: 50px;
+        }
+
+        #zegar1, #zegar2, #d1, #d2 {
+            border: solid 2px yellow;
+            background-color: silver;
+            border-radius: 20px;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.6);
+            font-weight: bold;
+            color:darkgoldenrod;
+        
+    </style>
+    <script>
+        let data1 = new Date(2019, 05, 21, 9)
+        let data2 = new Date(2020, 03, 08, 9)
+
+        function ile_zostalo(data, id) {
+            let dzisiaj = new Date();
+            let koncowa = data - dzisiaj;
+            let s = koncowa / 1000;
+            let min = s / 60;
+            let h = min / 60;
+            let d = h / 24;
+            
+            let ss = Math.floor(s % 60);
+            let mm = Math.floor(min % 60);
+            let hh = Math.floor(h % 24);
+            let dd = Math.floor(d);
+            
+            document.getElementById(id).innerHTML = dd + " dni " + hh + " godzin " + mm + " minut " + ss + " sekund "
+
+        }
+
+        function Zegar() {
+            let dzisiaj = new Date();
+            let dzien = dzisiaj.getDate();
+            let mc = dzisiaj.getMonth();
+            let rok = dzisiaj.getFullYear();
+            let godz = dzisiaj.getHours();
+            let min = dzisiaj.getMinutes();
+            let sek = dzisiaj.getSeconds();
+
+            document.getElementById("zegar1").innerHTML = dzien + " / " + mc + " / " + rok + "<br>" + godz + ":" + min + ":" + sek;
+
+            ile_zostalo(data1, "d1")
+            ile_zostalo(data2, "d2")
+
+            setTimeout("Zegar()", 1000)
+        }
+
+    </script>
+</head>
+
+<body onload="Zegar()">
+    <div id="container">
+        <h1>Zegary</h1>
+        <div id="zegar1">???</div>
+
+        <div id="d1"></div>
+        <div id="d2"></div>
+    </div>
+</body>
+
+</html>
